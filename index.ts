@@ -20,6 +20,6 @@ const currentLoads = loadVariations.pipe(
     const newCount = acc + curr;
     return newCount < 0 ? 0: newCount;
   }, 0),
-  shareReplay({bufferSize: 1, refCount: true}),
-  distinctUntilChanged()
+  distinctUntilChanged(),
+  shareReplay({bufferSize: 1, refCount: true})
 )
