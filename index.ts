@@ -1,5 +1,5 @@
-import { merge, Observable, interval, Subject, timer } from 'rxjs'; 
-import { map, mapTo, scan, startWith , distinctUntilChanged, shareReplay, pairwise, filter, switchMap, takeUntil} from 'rxjs/operators';
+import { merge, Observable, interval, Subject, timer, combineLatest } from 'rxjs'; 
+import { map, mapTo, scan, startWith , distinctUntilChanged, shareReplay, pairwise, filter, switchMap, takeUntil, withLatestFrom} from 'rxjs/operators';
 
 
 const taskStart = new Subject();
@@ -72,3 +72,6 @@ const shouldShowSpinner = spinnerActivated.pipe(
   shouldShowSpinner.pipe(
     switchMap(() => showSpinner.pipe(takeUntil(spinnerDeactivated)))
   )
+
+
+
