@@ -1,5 +1,5 @@
 import { Observable, interval, timer, fromEvent } from 'rxjs'; 
-import { tap, map, skip, filter, switchMap, takeUntil, takeWhile, take} from 'rxjs/operators';
+import { tap, map, skip, filter, exhaustMap, takeUntil, takeWhile, take} from 'rxjs/operators';
 
 const anyKeyPressed = fromEvent(document, 'keypress')
   .pipe(
@@ -16,7 +16,7 @@ function keyPressed (key) {
 function keyCombo(keyCombo) {
   return keyPressed(keyCombo[0])
     .pipe(
-      switchMap(() => anyKeyPressed.pipe(
+      exhaustMap(() => anyKeyPressed.pipe(
         takeUntil(
           timer(3000).pipe(
             tap(() => console.log('stoped, no futher key detected'))
@@ -41,8 +41,8 @@ interval(1000)
   .pipe(takeUntil(comboTriggered))
   .subscribe(
     x => {
-    console.log(x)
-  },
-  err => console.error('not ok'),
-  () => console.log('completed')
+      console.log(x)
+    },
+    err => console.error('not ok'),
+    () => console.log('completed')
   )
