@@ -1,5 +1,5 @@
-import { merge, Observable, interval, Subject, timer, combineLatest, fromEvent } from 'rxjs'; 
-import { tap, map, mapTo, scan, startWith , distinctUntilChanged, shareReplay, skip, pairwise, filter, switchMap, takeUntil, withLatestFrom, takeWhile, take} from 'rxjs/operators';
+import { Observable, interval, timer, fromEvent } from 'rxjs'; 
+import { tap, map, skip, filter, switchMap, takeUntil, takeWhile, take} from 'rxjs/operators';
 
 const anyKeyPressed = fromEvent(document, 'keypress')
   .pipe(
